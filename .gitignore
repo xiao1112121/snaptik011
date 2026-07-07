@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.xcuserstate
+xcuserdata/
+DerivedData/
+.env
+.env.*
+node_modules/
+.vercel/

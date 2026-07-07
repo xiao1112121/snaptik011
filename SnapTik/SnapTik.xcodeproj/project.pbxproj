@@ -1,0 +1,351 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000010000000000000001 /* SnapTikApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001 /* SnapTikApp.swift */; };
+		A10000020000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020000000000000002 /* ContentView.swift */; };
+		A10000030000000000000003 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030000000000000003 /* AppTheme.swift */; };
+		A10000040000000000000004 /* TikTokVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000040000000000000004 /* TikTokVideo.swift */; };
+		A10000050000000000000005 /* DownloadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000050000000000000005 /* DownloadState.swift */; };
+		A10000060000000000000006 /* TikTokVideoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000060000000000000006 /* TikTokVideoFetcher.swift */; };
+		A10000070000000000000007 /* VideoDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000070000000000000007 /* VideoDownloader.swift */; };
+		A10000080000000000000008 /* PhotoLibrarySaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080000000000000008 /* PhotoLibrarySaver.swift */; };
+		A10000090000000000000009 /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000090000000000000009 /* DownloadViewModel.swift */; };
+		A100000A000000000000000A /* VideoPreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000A000000000000000A /* VideoPreviewCard.swift */; };
+		A100000B000000000000000B /* ProgressOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000B000000000000000B /* ProgressOverlay.swift */; };
+		A100000C000000000000000C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A200000C000000000000000C /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000010000000000000001 /* SnapTikApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapTikApp.swift; sourceTree = "<group>"; };
+		A20000020000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000030000000000000003 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		A20000040000000000000004 /* TikTokVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikTokVideo.swift; sourceTree = "<group>"; };
+		A20000050000000000000005 /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
+		A20000060000000000000006 /* TikTokVideoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikTokVideoFetcher.swift; sourceTree = "<group>"; };
+		A20000070000000000000007 /* VideoDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloader.swift; sourceTree = "<group>"; };
+		A20000080000000000000008 /* PhotoLibrarySaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibrarySaver.swift; sourceTree = "<group>"; };
+		A20000090000000000000009 /* DownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
+		A200000A000000000000000A /* VideoPreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewCard.swift; sourceTree = "<group>"; };
+		A200000B000000000000000B /* ProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlay.swift; sourceTree = "<group>"; };
+		A200000C000000000000000C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A200000D000000000000000D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A30000010000000000000001 /* SnapTik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapTik.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A40000010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A50000010000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A50000020000000000000002 /* SnapTik */,
+				A50000030000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A50000020000000000000002 /* SnapTik */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000001 /* SnapTikApp.swift */,
+				A50000040000000000000004 /* App */,
+				A50000050000000000000005 /* Models */,
+				A50000060000000000000006 /* Services */,
+				A50000070000000000000007 /* ViewModels */,
+				A50000080000000000000008 /* Views */,
+				A200000C000000000000000C /* Assets.xcassets */,
+				A200000D000000000000000D /* Info.plist */,
+			);
+			path = SnapTik;
+			sourceTree = "<group>";
+		};
+		A50000030000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A30000010000000000000001 /* SnapTik.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A50000040000000000000004 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A20000030000000000000003 /* AppTheme.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A50000050000000000000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20000040000000000000004 /* TikTokVideo.swift */,
+				A20000050000000000000005 /* DownloadState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A50000060000000000000006 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A20000060000000000000006 /* TikTokVideoFetcher.swift */,
+				A20000070000000000000007 /* VideoDownloader.swift */,
+				A20000080000000000000008 /* PhotoLibrarySaver.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A50000070000000000000007 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A20000090000000000000009 /* DownloadViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A50000080000000000000008 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A20000020000000000000002 /* ContentView.swift */,
+				A50000090000000000000009 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A50000090000000000000009 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A200000A000000000000000A /* VideoPreviewCard.swift */,
+				A200000B000000000000000B /* ProgressOverlay.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A60000010000000000000001 /* SnapTik */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A80000030000000000000003 /* Build configuration list for PBXNativeTarget "SnapTik" */;
+			buildPhases = (
+				A60000020000000000000002 /* Sources */,
+				A40000010000000000000001 /* Frameworks */,
+				A60000030000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnapTik;
+			productName = SnapTik;
+			productReference = A30000010000000000000001 /* SnapTik.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A70000010000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A60000010000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A80000010000000000000001 /* Build configuration list for PBXProject "SnapTik" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = vi;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				vi,
+				Base,
+			);
+			mainGroup = A50000010000000000000001;
+			productRefGroup = A50000030000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A60000010000000000000001 /* SnapTik */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A60000030000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A100000C000000000000000C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A60000020000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000001 /* SnapTikApp.swift in Sources */,
+				A10000020000000000000002 /* ContentView.swift in Sources */,
+				A10000030000000000000003 /* AppTheme.swift in Sources */,
+				A10000040000000000000004 /* TikTokVideo.swift in Sources */,
+				A10000050000000000000005 /* DownloadState.swift in Sources */,
+				A10000060000000000000006 /* TikTokVideoFetcher.swift in Sources */,
+				A10000070000000000000007 /* VideoDownloader.swift in Sources */,
+				A10000080000000000000008 /* PhotoLibrarySaver.swift in Sources */,
+				A10000090000000000000009 /* DownloadViewModel.swift in Sources */,
+				A100000A000000000000000A /* VideoPreviewCard.swift in Sources */,
+				A100000B000000000000000B /* ProgressOverlay.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A90000010000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A90000020000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A90000030000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SnapTik/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.snaptik.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A90000040000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SnapTik/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.snaptik.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A80000010000000000000001 /* Build configuration list for PBXProject "SnapTik" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000010000000000000001 /* Debug */,
+				A90000020000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A80000030000000000000003 /* Build configuration list for PBXNativeTarget "SnapTik" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000030000000000000003 /* Debug */,
+				A90000040000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A70000010000000000000001 /* Project object */;
+}
