@@ -12,12 +12,12 @@ const iosGuideEl = $("iosGuide");
 let currentVideo = null;
 
 const isTikTokURL = (url) =>
-  /tiktok\.com|vm\.tiktok\.com|vt\.tiktok\.com/i.test(url);
+  /tiktok\.com|vm\.tiktok\.com|vt\.tiktok\.com|m\.tiktok\.com/i.test(url);
 
-function getVideoUrl() {
+function getProxyUrl() {
   if (!currentVideo) return null;
-  const useHD = hdToggle.checked && currentVideo.hdplay;
-  return useHD ? currentVideo.hdplay : currentVideo.play;
+  const useHD = hdToggle.checked && currentVideo.proxyHdplay;
+  return useHD ? currentVideo.proxyHdplay : currentVideo.proxyPlay;
 }
 
 function showStatus(msg, type = "loading") {
@@ -102,14 +102,13 @@ function renderPreview(data) {
 }
 
 $("savePhotosBtn").addEventListener("click", () => {
-  const videoUrl = getVideoUrl();
-  if (!videoUrl) {
+  const proxyUrl = getProxyUrl();
+  if (!proxyUrl) {
     showStatus("Không tìm thấy link video", "error");
     return;
   }
 
-  // Mở thẳng file MP4 trong Safari — cách duy nhất lưu vào Ảnh trên iPhone
-  window.location.href = videoUrl;
+  window.location.href = `/save.html?src=${encodeURIComponent(proxyUrl)}`;
 });
 
 hdToggle.addEventListener("change", () => {
@@ -118,7 +117,6 @@ hdToggle.addEventListener("change", () => {
 
 updateUI();
 
-// Xóa cache cũ (bản cũ có nút "Tải video" + nhấn giữ)
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.getRegistrations().then((regs) => {
     regs.forEach((r) => r.unregister());

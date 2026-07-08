@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#0A0A0F" />
+  <title>Lưu video — SnapTik</title>
+  <link rel="stylesheet" href="/style.css?v=4" />
+  <style>
+    .save-page { max-width: 480px; margin: 0 auto; padding: 16px; }
+    .save-page video { width: 100%; border-radius: 12px; background: #000; margin: 16px 0; }
+    .save-actions { display: flex; flex-direction: column; gap: 12px; }
+    .loading-box { text-align: center; padding: 40px 16px; color: #a0a0b0; }
+  </style>
+</head>
+<body>
+  <div class="save-page">
+    <h1 style="font-size:1.2rem;margin-bottom:8px;">📸 Lưu video vào Ảnh</h1>
+
+    <div id="loading" class="loading-box">
+      <div class="spinner" style="margin:0 auto 12px;"></div>
+      Đang tải video...
+    </div>
+
+    <div id="content" hidden>
+      <video id="video" controls playsinline webkit-playsinline preload="auto"></video>
+
+      <div class="save-actions">
+        <button id="shareBtn" class="btn btn-save-big">📤 Chia sẻ → Lưu Video</button>
+        <a id="downloadBtn" class="btn btn-secondary" href="#">📥 Tải về Tệp (Files)</a>
+        <a href="/" class="btn btn-secondary" style="text-align:center;text-decoration:none;">← Quay lại SnapTik</a>
+      </div>
+
+      <section class="card ios-guide" style="margin-top:16px;">
+        <h3>Cách lưu vào Ảnh</h3>
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <div>Nhấn <strong>📤 Chia sẻ → Lưu Video</strong></div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <div>Chọn <strong>Lưu Video</strong> hoặc <strong>Lưu vào Ảnh</strong></div>
+        </div>
+        <p class="hint">Cách 2: Nhấn giữ vào <strong>giữa video</strong> (không phải chữ) → <strong>Lưu Video</strong></p>
+        <p class="hint">Cách 3: Nhấn <strong>Tải về Tệp</strong> → mở app Ảnh → Nhập từ Tệp</p>
+      </section>
+    </div>
+
+    <div id="error" class="status error" hidden></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const src = params.get("src");
+
+    const video = document.getElementById("video");
+    const loading = document.getElementById("loading");
+    const content = document.getElementById("content");
+    const errorEl = document.getElementById("error");
+    const shareBtn = document.getElementById("shareBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    if (!src) {
+      loading.hidden = true;
+      errorEl.hidden = false;
+      errorEl.textContent = "Thiếu link video. Quay lại SnapTik và thử lại.";
+    } else {
+      downloadBtn.href = src + (src.includes("?") ? "&" : "?") + "dl=1";
+
+      video.src = src;
+      video.addEventListener("loadeddata", () => {
+        loading.hidden = true;
+        content.hidden = false;
+      });
+      video.addEventListener("error", () => {
+        loading.hidden = true;
+        errorEl.hidden = false;
+        errorEl.textContent = "Không tải được video. Quay lại và thử lại.";
+      });
+
+      shareBtn.addEventListener("click", async () => {
+        shareBtn.disabled = true;
+        shareBtn.textContent = "Đang chuẩn bị...";
+        try {
+          const res = await fetch(src);
+          if (!res.ok) throw new Error("fetch failed");
+          const blob = await res.blob();
+          const file = new File([blob], "tiktok.mp4", { type: "video/mp4" });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: "TikTok Video" });
+          } else {
+            window.location.href = downloadBtn.href;
+          }
+        } catch (e) {
+          if (e.name !== "AbortError") {
+            window.location.href = downloadBtn.href;
+          }
+        } finally {
+          shareBtn.disabled = false;
+          shareBtn.textContent = "📤 Chia sẻ → Lưu Video";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
