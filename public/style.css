@@ -210,6 +210,17 @@ input[type="url"] {
   margin-top: 14px;
 }
 
+.btn-save-big {
+  background: linear-gradient(90deg, #25f4ee, #fe2c55);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 16px;
+  padding: 20px 16px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 20px rgba(254, 44, 85, 0.4);
+}
+
 .btn-secondary {
   display: block;
   text-align: center;
@@ -331,6 +342,45 @@ input[type="url"] {
 .ios-guide .hint {
   margin-top: 10px;
   text-align: left;
+}
+
+.ios-guide .hint.warn {
+  color: var(--error);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 14px;
+}
+
+.guide-lead {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.step-box {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
 }
 
 @keyframes spin {

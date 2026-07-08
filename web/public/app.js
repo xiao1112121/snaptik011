@@ -7,15 +7,9 @@ const fetchBtn = $("fetchBtn");
 const hdToggle = $("hdToggle");
 const statusEl = $("status");
 const previewEl = $("preview");
-const playerEl = $("player");
-const videoEl = $("video");
 const iosGuideEl = $("iosGuide");
 
 let currentVideo = null;
-
-const isIOS = () =>
-  /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
 const isTikTokURL = (url) =>
   /tiktok\.com|vm\.tiktok\.com|vt\.tiktok\.com/i.test(url);
@@ -24,10 +18,6 @@ function getVideoUrl() {
   if (!currentVideo) return null;
   const useHD = hdToggle.checked && currentVideo.hdplay;
   return useHD ? currentVideo.hdplay : currentVideo.play;
-}
-
-function proxyDownloadUrl(videoUrl) {
-  return `/api/download?url=${encodeURIComponent(videoUrl)}`;
 }
 
 function showStatus(msg, type = "loading") {
@@ -50,7 +40,6 @@ function updateUI() {
 urlInput.addEventListener("input", () => {
   updateUI();
   previewEl.hidden = true;
-  playerEl.hidden = true;
   iosGuideEl.hidden = true;
   hideStatus();
 });
@@ -59,7 +48,6 @@ clearBtn.addEventListener("click", () => {
   urlInput.value = "";
   currentVideo = null;
   previewEl.hidden = true;
-  playerEl.hidden = true;
   iosGuideEl.hidden = true;
   hideStatus();
   updateUI();
@@ -83,7 +71,6 @@ fetchBtn.addEventListener("click", async () => {
 
   showStatus("Đang lấy thông tin video...");
   previewEl.hidden = true;
-  playerEl.hidden = true;
   iosGuideEl.hidden = true;
   fetchBtn.disabled = true;
 
@@ -96,10 +83,7 @@ fetchBtn.addEventListener("click", async () => {
     currentVideo = data;
     renderPreview(data);
     hideStatus();
-
-    if (isIOS()) {
-      iosGuideEl.hidden = false;
-    }
+    iosGuideEl.hidden = false;
   } catch (err) {
     showStatus(err.message || "Lỗi kết nối", "error");
   } finally {
@@ -117,81 +101,15 @@ function renderPreview(data) {
   previewEl.hidden = false;
 }
 
-async function saveViaShareAPI(videoUrl) {
-  showStatus("Đang chuẩn bị video...");
-
-  const res = await fetch(proxyDownloadUrl(videoUrl));
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error || "Không tải được video");
-  }
-
-  const blob = await res.blob();
-  const file = new File([blob], `tiktok_${currentVideo.id || "video"}.mp4`, {
-    type: "video/mp4",
-  });
-
-  if (navigator.canShare && navigator.canShare({ files: [file] })) {
-    await navigator.share({
-      files: [file],
-      title: currentVideo.title || "TikTok Video",
-    });
-    hideStatus();
-    return true;
-  }
-
-  return false;
-}
-
-function openVideoInSafari(videoUrl) {
-  window.open(videoUrl, "_blank", "noopener");
-  iosGuideEl.hidden = false;
-  iosGuideEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
-}
-
-$("savePhotosBtn").addEventListener("click", async () => {
+$("savePhotosBtn").addEventListener("click", () => {
   const videoUrl = getVideoUrl();
   if (!videoUrl) {
     showStatus("Không tìm thấy link video", "error");
     return;
   }
 
-  try {
-    if (navigator.share) {
-      const shared = await saveViaShareAPI(videoUrl);
-      if (shared) return;
-    }
-  } catch (err) {
-    if (err.name !== "AbortError") {
-      console.warn("Share failed:", err);
-    } else {
-      hideStatus();
-      return;
-    }
-  }
-
-  openVideoInSafari(videoUrl);
-  showStatus(
-    'Đã mở video. Nhấn <strong>Chia sẻ</strong> ở dưới Safari → <strong>Lưu Video</strong>',
-    "loading"
-  );
-});
-
-$("openVideoBtn").addEventListener("click", () => {
-  const videoUrl = getVideoUrl();
-  if (!videoUrl) {
-    showStatus("Không tìm thấy link video", "error");
-    return;
-  }
-
-  openVideoInSafari(videoUrl);
-  showStatus(
-    'Video đã mở. Nhấn <strong>Chia sẻ</strong> (□↑) ở dưới → <strong>Lưu Video</strong>',
-    "loading"
-  );
-
-  videoEl.src = videoUrl;
-  playerEl.hidden = false;
+  // Mở thẳng file MP4 trong Safari — cách duy nhất lưu vào Ảnh trên iPhone
+  window.location.href = videoUrl;
 });
 
 hdToggle.addEventListener("change", () => {
@@ -200,6 +118,10 @@ hdToggle.addEventListener("change", () => {
 
 updateUI();
 
+// Xóa cache cũ (bản cũ có nút "Tải video" + nhấn giữ)
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js").catch(() => {});
+  navigator.serviceWorker.getRegistrations().then((regs) => {
+    regs.forEach((r) => r.unregister());
+  });
+  caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
 }

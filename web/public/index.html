@@ -10,7 +10,7 @@
   <title>SnapTik — Tải TikTok không logo</title>
   <link rel="manifest" href="/manifest.json" />
   <link rel="apple-touch-icon" href="/icon-192.png" />
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css?v=3" />
 </head>
 <body>
   <div class="app">
@@ -68,34 +68,32 @@
           </div>
         </div>
         <p id="title" class="title"></p>
-        <button id="savePhotosBtn" class="btn btn-download">
-          📸 Lưu vào Ảnh
-        </button>
-        <button id="openVideoBtn" class="btn btn-secondary">
-          ▶ Mở video trong Safari
+
+        <button id="savePhotosBtn" class="btn btn-save-big">
+          📸 NHẤN ĐỂ LƯU VÀO ẢNH
         </button>
       </section>
 
       <section id="iosGuide" class="card ios-guide" hidden>
-        <h3>📱 Cách lưu vào Ảnh trên iPhone</h3>
-        <ol>
-          <li>Nhấn <strong>▶ Mở video trong Safari</strong> ở trên</li>
-          <li>Video mở ở tab mới → nhấn nút <strong>Chia sẻ</strong> (hình vuông + mũi tên) ở dưới</li>
-          <li>Chọn <strong>Lưu Video</strong> hoặc <strong>Lưu vào Ảnh</strong></li>
-        </ol>
-        <p class="hint">Nếu không thấy "Lưu Video", chọn <strong>Lưu vào Tệp</strong> → mở app Ảnh → Import</p>
-      </section>
-
-      <section id="player" class="card player" hidden>
-        <video id="video" controls playsinline webkit-playsinline></video>
+        <h3>⚠️ KHÔNG nhấn giữ video!</h3>
+        <p class="guide-lead">Làm đúng 2 bước sau:</p>
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <div>Nhấn nút <strong>📸 NHẤN ĐỂ LƯU VÀO ẢNH</strong> ở trên</div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <div>Safari mở video → nhấn nút <strong>Chia sẻ □↑</strong> ở <strong>DƯỚI CÙNG</strong> màn hình → chọn <strong>Lưu Video</strong></div>
+        </div>
+        <p class="hint warn">Nhấn giữ video trong SnapTik = KHÔNG lưu được (chỉ hiện Sao chép)</p>
       </section>
     </main>
 
     <footer class="footer">
-      <p>Dùng trên iPhone: Safari → Chia sẻ → <strong>Thêm vào Màn hình chính</strong></p>
+      <p>Safari → Chia sẻ → <strong>Thêm vào Màn hình chính</strong></p>
     </footer>
   </div>
 
-  <script src="/app.js"></script>
+  <script src="/app.js?v=3"></script>
 </body>
 </html>
