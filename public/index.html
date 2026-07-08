@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="SnapTik" />
+  <meta name="theme-color" content="#0A0A0F" />
+  <title>SnapTik — Tải TikTok không logo</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">⬇</div>
+        <div>
+          <h1>SnapTik</h1>
+          <p>Tải TikTok HD, không logo</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <label for="url">Dán link TikTok</label>
+        <div class="input-row">
+          <input
+            id="url"
+            type="url"
+            placeholder="https://www.tiktok.com/@user/video/..."
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+          />
+          <button id="clearBtn" class="icon-btn" hidden aria-label="Xóa">✕</button>
+        </div>
+        <button id="pasteBtn" class="link-btn">📋 Dán từ clipboard</button>
+      </section>
+
+      <section class="card toggle-card">
+        <label class="toggle">
+          <input type="checkbox" id="hdToggle" checked />
+          <span class="slider"></span>
+          <span class="toggle-text">
+            <strong>Chất lượng HD</strong>
+            <small>Tải bản không watermark, độ phân giải cao nhất</small>
+          </span>
+        </label>
+      </section>
+
+      <button id="fetchBtn" class="btn btn-primary" disabled>
+        🔍 Lấy thông tin video
+      </button>
+
+      <div id="status" class="status" hidden></div>
+
+      <section id="preview" class="card preview" hidden>
+        <div class="preview-top">
+          <img id="cover" alt="Thumbnail" />
+          <div class="preview-info">
+            <strong id="author"></strong>
+            <span id="username" class="muted"></span>
+            <span id="badge" class="badge">HD • Không logo</span>
+          </div>
+        </div>
+        <p id="title" class="title"></p>
+        <button id="downloadBtn" class="btn btn-download">
+          ⬇ Tải video
+        </button>
+        <p class="hint">Trên iPhone: nhấn giữ video → <strong>Lưu vào Ảnh</strong></p>
+      </section>
+
+      <section id="player" class="card player" hidden>
+        <video id="video" controls playsinline webkit-playsinline></video>
+        <a id="directLink" class="btn btn-secondary" download="tiktok.mp4" target="_blank" rel="noopener">
+          📥 Tải file MP4
+        </a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Dùng trên iPhone: Safari → Chia sẻ → <strong>Thêm vào Màn hình chính</strong></p>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
