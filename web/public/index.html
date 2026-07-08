@@ -68,17 +68,26 @@
           </div>
         </div>
         <p id="title" class="title"></p>
-        <button id="downloadBtn" class="btn btn-download">
-          ⬇ Tải video
+        <button id="savePhotosBtn" class="btn btn-download">
+          📸 Lưu vào Ảnh
         </button>
-        <p class="hint">Trên iPhone: nhấn giữ video → <strong>Lưu vào Ảnh</strong></p>
+        <button id="openVideoBtn" class="btn btn-secondary">
+          ▶ Mở video trong Safari
+        </button>
+      </section>
+
+      <section id="iosGuide" class="card ios-guide" hidden>
+        <h3>📱 Cách lưu vào Ảnh trên iPhone</h3>
+        <ol>
+          <li>Nhấn <strong>▶ Mở video trong Safari</strong> ở trên</li>
+          <li>Video mở ở tab mới → nhấn nút <strong>Chia sẻ</strong> (hình vuông + mũi tên) ở dưới</li>
+          <li>Chọn <strong>Lưu Video</strong> hoặc <strong>Lưu vào Ảnh</strong></li>
+        </ol>
+        <p class="hint">Nếu không thấy "Lưu Video", chọn <strong>Lưu vào Tệp</strong> → mở app Ảnh → Import</p>
       </section>
 
       <section id="player" class="card player" hidden>
         <video id="video" controls playsinline webkit-playsinline></video>
-        <a id="directLink" class="btn btn-secondary" download="tiktok.mp4" target="_blank" rel="noopener">
-          📥 Tải file MP4
-        </a>
       </section>
     </main>
 
