@@ -66,23 +66,53 @@
       errorEl.hidden = false;
       errorEl.textContent = "Thiếu link video. Quay lại SnapTik và thử lại.";
     } else {
+      // Prepare download href (fallback) and fetch as Blob for reliable playback
       downloadBtn.href = src + (src.includes("?") ? "&" : "?") + "dl=1";
-
-      video.src = src;
-      content.hidden = false;
-      loading.innerHTML =
-        "Đang tải video... Nếu không hiển thị, hãy thử dùng nút Tải về Tệp.";
 
       let fallbackTimer = setTimeout(() => {
         loading.hidden = true;
         content.hidden = false;
       }, 8000);
 
-      video.addEventListener("loadeddata", () => {
-        clearTimeout(fallbackTimer);
-        loading.hidden = true;
-        content.hidden = false;
-      });
+      let fetchedBlob = null;
+      let objectUrl = null;
+
+      async function loadVideoAsBlob() {
+        loading.innerHTML =
+          "Đang tải video... Nếu không hiển thị, hãy thử dùng nút Tải về Tệp.";
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 15000);
+          const res = await fetch(src, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!res.ok) throw new Error("fetch failed");
+          const blob = await res.blob();
+          fetchedBlob = blob;
+          objectUrl = URL.createObjectURL(blob);
+          video.src = objectUrl;
+          downloadBtn.href = objectUrl;
+          downloadBtn.setAttribute("download", "tiktok.mp4");
+          content.hidden = false;
+          loading.hidden = true;
+        } catch (err) {
+          console.warn("video load failed", err && err.name);
+          if (err && err.name === "AbortError") {
+            // keep fallback behavior
+            clearTimeout(fallbackTimer);
+            loading.hidden = true;
+            content.hidden = false;
+            return;
+          }
+          clearTimeout(fallbackTimer);
+          loading.hidden = true;
+          errorEl.hidden = false;
+          errorEl.textContent =
+            "Không tải được video. Thử nút Tải về Tệp hoặc quay lại SnapTik.";
+        }
+      }
+
+      loadVideoAsBlob();
+
       video.addEventListener("error", () => {
         clearTimeout(fallbackTimer);
         loading.hidden = true;
@@ -91,17 +121,26 @@
           "Không tải được video. Thử nút Tải về Tệp hoặc quay lại SnapTik.";
       });
 
+      // Clean up object URL when page unloads
+      window.addEventListener("unload", () => {
+        if (objectUrl) URL.revokeObjectURL(objectUrl);
+      });
+
       shareBtn.addEventListener("click", async () => {
         shareBtn.disabled = true;
         shareBtn.textContent = "Đang chuẩn bị...";
         try {
-          const res = await fetch(src);
-          if (!res.ok) throw new Error("fetch failed");
-          const blob = await res.blob();
+          let blob = fetchedBlob;
+          if (!blob) {
+            const res = await fetch(src);
+            if (!res.ok) throw new Error("fetch failed");
+            blob = await res.blob();
+          }
           const file = new File([blob], "tiktok.mp4", { type: "video/mp4" });
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
             await navigator.share({ files: [file], title: "TikTok Video" });
           } else {
+            // Fallback to download link
             window.location.href = downloadBtn.href;
           }
         } catch (e) {
