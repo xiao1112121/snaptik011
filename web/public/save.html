@@ -69,11 +69,20 @@
       downloadBtn.href = src + (src.includes("?") ? "&" : "?") + "dl=1";
 
       video.src = src;
+      let fallbackTimer = setTimeout(() => {
+        if (!content.hidden) return;
+        loading.innerHTML =
+          "Đang tải video... Nếu không hiển thị, hãy thử dùng nút Tải về Tệp.";
+        content.hidden = false;
+      }, 8000);
+
       video.addEventListener("loadeddata", () => {
+        clearTimeout(fallbackTimer);
         loading.hidden = true;
         content.hidden = false;
       });
       video.addEventListener("error", () => {
+        clearTimeout(fallbackTimer);
         loading.hidden = true;
         errorEl.hidden = false;
         errorEl.textContent = "Không tải được video. Quay lại và thử lại.";
