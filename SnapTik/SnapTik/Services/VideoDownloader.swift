@@ -18,7 +18,12 @@ final class VideoDownloader: NSObject, ObservableObject {
             config.timeoutIntervalForResource = 300
             let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
 
-            downloadTask = session.downloadTask(with: url)
+            var request = URLRequest(url: url)
+            request.setValue("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1", forHTTPHeaderField: "User-Agent")
+            request.setValue("https://www.tiktok.com/", forHTTPHeaderField: "Referer")
+            request.setValue("*/*", forHTTPHeaderField: "Accept")
+
+            downloadTask = session.downloadTask(with: request)
             downloadTask?.resume()
         }
     }

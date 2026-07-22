@@ -3,6 +3,7 @@ import SwiftUI
 struct VideoPreviewCard: View {
     let video: TikTokVideo
     let preferHD: Bool
+    @State private var showShareSheet = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -36,6 +37,17 @@ struct VideoPreviewCard: View {
         }
         .padding(AppTheme.padding)
         .cardStyle()
+        .contextMenu {
+            Button(action: { showShareSheet = true }) {
+                Label("Chia sẻ", systemImage: "square.and.arrow.up")
+            }
+            Button(action: { UIPasteboard.general.string = video.bestDownloadURL.absoluteString }) {
+                Label("Sao chép link", systemImage: "doc.on.doc")
+            }
+        }
+        .sheet(isPresented: $showShareSheet) {
+            ShareSheet(items: [video.bestDownloadURL])
+        }
     }
 
     @ViewBuilder
@@ -84,4 +96,14 @@ struct VideoPreviewCard: View {
         let s = seconds % 60
         return String(format: "%d:%02d", m, s)
     }
+}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
